@@ -129,12 +129,11 @@ plt.title('Simulazione di significatività del picco')
 plt.show()
 
 
-freq_m, trasf_m = an.maschera(7e4)
-freq_m = freq_m[:int(len(freq_m)/2)]
+trasf_m = an.maschera(7e4)
 power_m = np.abs(trasf_m[:trasf_m.size//2])**2
 
 plt.plot(freq, power, '-o', label = 'spettro di potenza')
-plt.plot(freq_m, power_m, 'o', label = 'spettro filtrato') 
+plt.plot(freq, power_m, 'o', label = 'spettro filtrato') 
 plt.xscale('log')
 plt.yscale('log')
 plt.xlabel('frequenza (anni$^{-1}$)')

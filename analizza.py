@@ -68,10 +68,8 @@ class Analyze:
         freq, trasf = self.trasff()
         mask = np.abs(trasf)**2 < soglia
         fil_trasf = trasf.copy()
-        fil_freq = freq.copy()
         fil_trasf[mask] = 0
-        fil_freq[mask] = 0
-        return fil_freq, fil_trasf        
+        return fil_trasf        
         
 
     
@@ -83,8 +81,6 @@ class Analyze:
         y = fft.irfft(coeff, n = num)
         return y
 
-
-#class 
     
     
     #trova_picco(trasf, freq): trova il picco non nullo dello spettro di potenza
