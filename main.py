@@ -99,13 +99,13 @@ fig, ax = plt.subplots(1, 2, figsize = (16, 6))
 fig.subplots_adjust(hspace=0)
 
 
-ax[0].plot(uniform_time, uniform_temp, label = 'dati iniziali')
-ax[0].plot(uniform_time, ntemp, label = 'dati mescolati', color = 'tab:orange')
+ax[0].plot(uniform_time, uniform_temp, label = 'dati iniziali', alpha = 1)
+ax[0].plot(uniform_time, ntemp, label = 'dati mescolati', alpha = 0.8)
 ax[0].set_xlabel('tempo (anni dal 1950)')
 ax[0].set_ylabel('variazione di temperatura rispetto alla media dei 1000 anni precedenti (°C)')
 
-ax[1].plot(freq, power, '-o', label = 'spettro di potenza')
-ax[1].plot(nfreq, npower, '-o', label = 'spettro di potenza per dati mescolati', color = 'tab:orange')
+ax[1].plot(freq, power, '-o', label = 'spettro di potenza', alpha = 1)
+ax[1].plot(nfreq, npower, '-o', label = 'spettro di potenza per dati mescolati', alpha = 1)
 ax[1].set_xscale('log')
 ax[1].set_yscale('log')
 ax[1].set_xlabel('frequenza (anni$^{-1}$)')
@@ -159,7 +159,8 @@ n = 20
 
 params, params_covariance = opt.curve_fit(f_ip, freq[n:], power[n:],p0 = [1e-5, 2], maxfev=10000)
 
-print(params)
+print('Funzione di regressione A/x^B')
+print('A = ', params[0], 'B = ', params[1])
 
 xfreq = np.linspace(1e-6, np.max(freq), len(freq))
 yfreq = f_ip(xfreq, params[0], params[1])

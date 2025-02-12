@@ -8,7 +8,7 @@ from scipy import optimize as opt
 
 '''
 
-classe per l'analisi di Fourier dei dati
+classe per l'analisi di Fourier e dei dati 
 
 metodi:
 
@@ -23,13 +23,13 @@ class Analyze:
         self.temp = np.array(temp)
 
 
-    #datas(): ritorna i dati
+    #datas(): restituisce i dati
 
     def datas(self):
         return self.time, self.temp
 
 
-    #uniform(passo): uniforma i campionamenti lungo l'asse temporale dato un passo, aggiorna i dati 
+    #uniform(passo): uniforma i campionamenti lungo l'asse temporale dato un passo, aggiorna i dati, restituisce gli indici corrispondenti ai dati uniformati 
 
     def uniform(self, passo):
         array = self.time
@@ -52,7 +52,7 @@ class Analyze:
         self.temp = self.temp[indici]
         return indici
 
-    #trasff(): fa la trasformata di Fourier, ritorna lo spettro di potenza ed i coefficienti
+    #trasff(): fa la trasformata di Fourier, restituisce lo spettro di potenza ed i coefficienti
 
     def trasff(self):
         trasf = fft.fft(self.temp)
@@ -62,7 +62,7 @@ class Analyze:
         return freq,trasf
 
 
-    #maschera(soglia): prende solo i picchi sopra una soglia fissata
+    #maschera(soglia): prende solo i picchi sopra una soglia fissata, manda a zero gli altri
 
     def maschera(self, soglia):
         freq, trasf = self.trasff()
@@ -73,7 +73,7 @@ class Analyze:
         
 
     
-    #reconstruct(coeff): fa l'antitrasformata 
+    #reconstruct(coeff): fa l'antitrasformata, restituisce i dati ricostruiti
 
     def reconstruct(self, coeff, num = None):
         if num is None:
@@ -96,7 +96,7 @@ class Analyze:
             return freq[i], power[i]
 
         
-    #sintetizza(array): crea un nuovo array rimescolando i dati in ingresso
+    #sintetizza(array): crea un nuovo array rimescolando i dati in ingresso, restituisce l'array mescolato
 
     def sintetizza(self, array):
         copia = np.copy(array)
